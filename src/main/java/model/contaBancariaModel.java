@@ -16,4 +16,6 @@ public class contaBancariaModel {
         transefernciasRealizadas = 0;
         saldoConta = 0;
     }
+
+    //criar getters and setters 
 }
