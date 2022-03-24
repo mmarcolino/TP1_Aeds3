@@ -1,13 +1,6 @@
-package Codigos;
+package src.main.java.model;
 
-import java.util.*;
-import java.io.*;
-
-/**
- * contasBancarias
- */
-class contasBancarias {
-
+public class contaBancariaModel {
     String idConta;
     String nomePessoa;
     String cpf;
@@ -15,25 +8,12 @@ class contasBancarias {
     int transefernciasRealizadas;
     float saldoConta;
 
-    public contasBancarias(){
+    public contaBancariaModel(){
         idConta = "";
         nomePessoa = "";
         cpf = "";
         cidade = "";
         transefernciasRealizadas = 0;
         saldoConta = 0;
-    }
-
-
-
-
-
-}
-
-public class Main{
-
-    
-    public static void main(String[] args) {
-        
     }
 }
