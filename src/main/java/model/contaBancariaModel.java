@@ -5,7 +5,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.text.DecimalFormat;
 
 public class ContaBancariaModel {
     private int idConta;
@@ -79,6 +78,16 @@ public class ContaBancariaModel {
         return this.saldoConta;
     }
 
+    /*
+    public void recebe(){
+
+    }
+
+    public void transfere(){
+        
+    }
+    */
+    
     @Override
     public String toString() {
         if (this.idConta >= 0) {
@@ -123,5 +132,22 @@ public class ContaBancariaModel {
         this.cidade = dataInputSteam.readUTF();
         this.transefernciasRealizadas = dataInputSteam.readInt();
         this.saldoConta = dataInputSteam.readInt();
+
+        /*
+        try {
+            if (dis.readChar() != '*') {
+                this.setCodigo(dis.readInt());
+                this.setNome(dis.readUTF());
+                Date date = new Date(dis.readLong());
+                this.setDataNascimento(date);
+                this.setSexo(dis.readChar());
+                this.setAnotacoes(dis.readUTF());
+            } else {
+                this.setCodigo(-1);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        */
     }
 }
