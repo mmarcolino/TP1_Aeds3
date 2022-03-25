@@ -1,5 +1,5 @@
 package src.main.java.dao;
 
-public class contaBancariaDAO {
+public class ContaBancariaDAO {
     
 }

@@ -1,25 +1,35 @@
 package src.main.java.model;
 
-public class contaBancariaModel {
-    String idConta;
-    String nomePessoa;
-    String cpf;
-    String cidade;
-    int transefernciasRealizadas;
-    float saldoConta;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.text.DecimalFormat;
 
-    public contaBancariaModel(){
-        idConta = "";
-        nomePessoa = "";
-        cpf = "";
-        cidade = "";
-        transefernciasRealizadas = 0;
-        saldoConta = 0;
+public class ContaBancariaModel {
+    private int idConta;
+    private String nomePessoa;
+    private String cpf;
+    private String cidade;
+    private int transefernciasRealizadas;
+    private float saldoConta;
+
+    public ContaBancariaModel(){
+    
     }
+
+    public ContaBancariaModel(int id, String nome, String cpf,String cidade){
+    this.idConta = id;
+    this.nomePessoa = nome;
+    this.cpf = cpf;
+    this.cidade = cidade;
+    }
+
 
     // Setters.......................//
 
-    public void setIdConta(String id){
+    public void setIdConta(int id){
         this.idConta = id;
     }
 
@@ -45,36 +55,73 @@ public class contaBancariaModel {
 
     //getters........................//
 
-    public String getIdConta(){
-        return idConta;
+    public int getIdConta(){
+        return this.idConta;
     }
 
     public String getNomePessoa(){
-        return nomePessoa;
+        return this.nomePessoa;
     }
 
     public String getCpf(){
-        return cpf;
+        return this.cpf;
     }
 
     public String getCidade(){
-        return cidade;
+        return this.cidade;
     }
 
     public int getTranferenciasRealizada(){
-        return transefernciasRealizadas;
+        return this.transefernciasRealizadas;
     }
 
     public float getSaldo(){
-        return saldoConta;
+        return this.saldoConta;
     }
 
-    public void novaConta(String id, String nome, String cpf,String cidade){
-        this.idConta = id;
-        this.nomePessoa = nome;
-        this.cpf = cpf;
-        this.cidade = cidade;
+    @Override
+    public String toString() {
+        if (this.idConta >= 0) {
+            return "\nId: " + this.idConta + "\nNome: " + this.nomePessoa + "\nCPF: " + this.cpf
+                    + "\nCidade: " + this.cidade + "\nTransefernciasRealizadas: " + this.transefernciasRealizadas +
+                    "\nSaldoConta: " + this.saldoConta;
+        } else {
+            return null;
+        }
     }
-
      
+    public byte[] toByteArray() throws IOException{
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        DataOutputStream dos = new DataOutputStream(baos);
+        dos.writeInt(this.idConta);
+        dos.writeUTF(this.nomePessoa);
+        dos.writeUTF(this.cpf);
+        dos.writeUTF(this.cidade);
+        dos.writeInt(this.transefernciasRealizadas);
+        dos.writeFloat(this.saldoConta);
+
+      /*  if (baos.toByteArray().length <= registerSize) {
+            byte[] tailLength = new byte[registerSize - baos.toByteArray().length];
+            dos.write(tailLength);
+        } else {
+            throw new IndexOutOfBoundsException("Prontuário excede limite de tamanho.");
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    */
+        return baos.toByteArray();
+    }
+
+    public void readFromByteArray(byte[] byteArray) throws IOException{
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray);
+        DataInputStream dataInputSteam = new DataInputStream(byteArrayInputStream);
+
+        this.idConta = dataInputSteam.readInt();
+        this.nomePessoa = dataInputSteam.readUTF();
+        this.cpf = dataInputSteam.readUTF();
+        this.cidade = dataInputSteam.readUTF();
+        this.transefernciasRealizadas = dataInputSteam.readInt();
+        this.saldoConta = dataInputSteam.readInt();
+    }
 }
