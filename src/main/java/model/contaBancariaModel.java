@@ -6,7 +6,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class ContaBancariaModel {
+public class ContaBancariaModel{
     private int idConta;
     private String nomePessoa;
     private String cpf;
@@ -131,7 +131,7 @@ public class ContaBancariaModel {
         this.cpf = dataInputSteam.readUTF();
         this.cidade = dataInputSteam.readUTF();
         this.transefernciasRealizadas = dataInputSteam.readInt();
-        this.saldoConta = dataInputSteam.readInt();
+        this.saldoConta = dataInputSteam.readInt(); //Não deveria ser readFloat() não? 
 
         /*
         try {
